@@ -9,5 +9,10 @@ IFS=',' read -ra inputArray <<< "$1"
 #
 
 for arg in "${inputArray[@]}"; do
+if [[ ! "$arg" =~ ^\.[A-Za-z]+$ ]]; then
+#regex patterns for numbers ^=start of the line/word ^[0-9]+$, for alphabets ^[A-Za-z]+$, + one or more, $ end of line/word
+echo "ERROR: provided input is a number $arg "
+exit 1
+fi
   echo " Passed argument : $arg"
 done
