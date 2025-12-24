@@ -1,0 +1,39 @@
+#!/bin/bash
+
+LOG_DIR="/c/workdirectory/logs"
+tar_dir="/c/workdirectory/tar-folder/"
+
+cd "$LOG_DIR" || exit
+
+today=$(date +%Y%m%d)
+
+for file in log-*.log.txt
+do
+	#basename - it removes the directory path and keeps only the file name.
+	file_date=$(basename "$file" | cut -d'-' -f2 | cut -d'.' -f1 )
+
+	echo "processing $file_date"
+
+	# skip for today date
+	[ "$file_date" = "$today" ] && continue
+        
+
+
+# "" = hold something
+#$() = do something
+	date_dir="$tar_dir/$file_date"
+	#-p = if dir not present than make directory 
+	mkdir -p "$date_dir"
+        tarname="$date_dir"/log-"$file_date".tar.gz
+
+        if  [ ! -f "$tarname" ]; then
+	#if ls log-$file_date*.log.txt >/dev/null 2>&1; then 	
+	       tar -czf "$tarname" log-"$file_date"*.log.txt
+		echo "file has been archived"
+		#mv "$tarname" "$tar_dir"
+		#echo "file has been moved to $tar_dir"
+	#	rm log-$file_date*.log.txt
+	#	echo "file $file_date have been removed from $LOG_DIR"
+	fi	
+done
+	
