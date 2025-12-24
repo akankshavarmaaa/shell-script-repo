@@ -1,0 +1,19 @@
+#!/bin/bash
+
+LOG_DIR="/c/workdirectory/logs"
+
+#cd log_dir, if dir not exists then exit
+cd $LOG_DIR || exit
+
+#3days ago, yesterday will work here
+# + = plus ke bad wala formate forllow kro, agr + nhi lagayenge to as it is %y%m%d print hoga
+
+old_date=$(date -d "3 days ago" +%Y%m%d)
+
+
+logfile=log-$old_date.log
+
+pwd 
+#if [ -f "$logfile" ]; then
+echo "hello $logfile"
+#fi

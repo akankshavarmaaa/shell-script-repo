@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+#date=$(date -d "4 days ago" +%Y%m%d)
+date=20251216
+LOG_DIR="/c/workdirectory/logs"
+
+tar_dir="/c/workdirectory/tar-folder"
+
+cd $LOG_DIR || exit
+#file_name=log-$date.log.txt
+
+
+tarname="log-$date.tar.gz"
+
+
+#this is wrong bcz -f checks single file, *means multiple files
+#if [[ -f log-$date*.log.txt ]]; then
+
+if ls log-$date*.log.txt 1>/dev/null 2>&1
+then
+    tar -czvf $tarname log-$date*.log.txt
+    echo "file archived"
+    mv "$tarname" "$tar_dir/"
+    echo "tar file for $date moved to $tar_dir"
+
+    rm log-$date*.log.txt
+    echo "logs deleted for $date"
+else
+    echo "$date file not presnt"
+
+ fi   
