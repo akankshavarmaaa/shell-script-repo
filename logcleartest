@@ -1,0 +1,23 @@
+#!/bin/bash
+
+LOG_DIR="/c/workdirectory/logs"
+
+#cd log_dir, if dir not exists then exit
+cd $LOG_DIR || exit
+
+#3days ago, yesterday will work here
+# + = plus ke bad wala formate forllow kro, agr + nhi lagayenge to as it is %y%m%d print hoga
+#-d = “tell date to calculate or parse the date I specify”
+
+old_date=$(date -d "3 days ago" +%Y%m%d)
+
+
+logfile=log-$old_date.log.txt
+tarfile=old-logs.tar
+
+if [ -f "$logfile" ]; then
+
+tar -cvf $tarfile $logfile
+else 
+echo 	"hello file does not exist"
+fi

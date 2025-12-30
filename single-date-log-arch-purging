@@ -1,0 +1,31 @@
+#!/bin/bash
+
+date=20251214
+LOG_DIR="/c/workdirectory/logs"
+tar_dir="/c/workdirectory/tar-folder"
+
+cd "$LOG_DIR" || exit 1
+
+tarname="log-$date.tar.gz"
+
+
+if [ -f "$tarname" ]; then
+    echo "Archive already exists for $date"
+    exit 0
+fi
+#exit 0 is successful execution
+
+if ls log-$date*.log.txt 1>/dev/null 2>&1
+then
+    tar -czf "$tarname" log-$date*.log.txt
+    echo "file archived"
+
+    mv "$tarname" "$tar_dir/"
+    echo "tar file for $date moved to $tar_dir"
+
+    rm log-$date*.log.txt
+    echo "logs deleted for $date"
+else
+    echo "$date file not present"
+fi
+
