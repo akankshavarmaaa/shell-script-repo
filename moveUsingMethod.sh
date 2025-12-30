@@ -1,6 +1,15 @@
 #!/bin/bash
 
+
 #count is a initialization of value 0
+#method body
+
+process_orders(){
+local INPUT_BUSINESS_AREA=$1
+
+}
+
+
 count=0
 
 
