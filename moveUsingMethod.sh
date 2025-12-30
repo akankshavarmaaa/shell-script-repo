@@ -7,15 +7,10 @@
 process_orders(){
 local INPUT_BUSINESS_AREA=$1
 
-}
-
-
 count=0
 
-
-
 while IFS=',' read -r order_id business_area currency last_price qty timestamp
-do 
+do
 
 #readable date = changing date format
 # date -d = dont print current date, use the date provinding here
@@ -33,21 +28,29 @@ do
 timestamp=${timestamp//$'\r'}
 
 readable_date=$(date -d "@$((timestamp/1000))" "+%Y/%m/%d")
-	
-# airthmetic operations of if (( ))	
-	
-	if [[ "$business_area" == "Retail" ]]; then
+
+# airthmetic operations of if (( ))
+
+	if [[ "$business_area" == "$INPUT_BUSINESS_AREA" ]]; then
 	echo "order: $order_id | business_area: $business_area | currency: $currency | timestamp: $readable_date"
 	((count++))
 	fi
 
-	if [[ "$business_area" == "Energy" ]]; then
-        echo "order: $order_id | busniess_area: $business_area | currency: $currency | timestamp: $readable_date"
-	((count++))
-	fi
 
 #input file = orders_100_records.csv
 done < orders_100_records.csv
 
 echo " $count "
+}
+main(){
+  echo "=========RETAIL========="
+  process_orders "Retail"
+  echo "=========ENERGY========="
+  process_orders "Energy"
+  echo "=========BFSI========="
+  process_orders "BFSI"
+}
+main
+
+
 
