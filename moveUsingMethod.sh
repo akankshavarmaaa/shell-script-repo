@@ -47,7 +47,7 @@ main(){
   process_orders "Retail"
   echo "=========ENERGY========="
   process_orders "Energy"
-  echo "=========BFSI========="
+  echo "=========BFSI Wonders========="
   process_orders "BFSI"
 }
 main
