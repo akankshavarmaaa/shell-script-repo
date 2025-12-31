@@ -28,4 +28,6 @@ do
 done < orders_100_records.csv
 
 echo " $count "
+echo "12334"
+echo "moveu"
 
