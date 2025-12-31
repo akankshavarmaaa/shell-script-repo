@@ -41,4 +41,6 @@ readable_date=$(date -d "@$((timestamp/1000))" "+%Y/%m/%d")
 done < orders_100_records.csv
 
 echo " $count "
+echo "12334"
+echo "moveu"
 
