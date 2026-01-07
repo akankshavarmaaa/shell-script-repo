@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+tr ' ' '\n' < /c/workdirectory/words/words.txt | while read -r word
+do 
+	if [ ${#word} -ge 4 ]; then
+		echo "$word"
+
+	fi
+done
+
+
